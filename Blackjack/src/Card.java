@@ -50,4 +50,8 @@ public class Card {
 	public void setNumber(int numIn) {
 		number = numIn;
 	}
+	
+	public String toString() {
+		return "Name: " + name + " Suit: " + suit + " Value: " + number;
+	}
 }
