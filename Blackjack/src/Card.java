@@ -2,72 +2,60 @@
 //Listman
 //December 2010
 
-    public class Card implements Comparable 
-   {
+    public class Card implements Comparable {
       private Suit suit;
       private int rank;
       private boolean faceUp;
    
-       public Card(Suit suit, int rank)
-      {
+       public Card(Suit suit, int rank){
          this.suit = suit;
          this.rank = rank;
          faceUp = false;
-      }
+       }
    
-       public boolean equals(Object other)
-      {
-         if (this == other)
+       public boolean equals(Object other){
+         if (this == other) {
             return true;
-         else if (!(other instanceof Card))
+         }else if (!(other instanceof Card)) {
             return false;
-         else
-         {
+         }else{
             Card otherCard = (Card)other;
             return rank == otherCard.rank;
          }
-      }
+       }
    
-       public int compareTo(Object other)
-      {
+       public int compareTo(Object other){
          if (!(other instanceof Card))
             throw new IllegalArgumentException("Parameter must be a Card");
          Card otherCard = (Card) other;
          return rank - otherCard.rank;
-      }
+       }
    
-       public int getRank()
-      {
+       public int getRank(){
          return rank;
-      }
+       }
    
-       public Suit getSuit()
-      {
+       public Suit getSuit(){
          return suit;
-      }
+       }
    
-       public boolean isFaceUp()
-      {
+       public boolean isFaceUp(){
          return faceUp;
-      }
+       }
    
-       public boolean isRed()
-      {
+       public boolean isRed(){
          return suit == Suit.heart || suit == Suit.diamond;
-      }
+       }
    
-       public void turn()
-      {
+       public void turn(){
          faceUp = !faceUp;
-      }
+       }
    
-       public String toString()
-      {
+       public String toString(){
          return rankToString() + " of " + suit;
-      }
+       }
    
-       private String rankToString()
-      {
+       private String rankToString(){
          if (rank == 1)
             return "Ace";
          else if (rank == 11)
@@ -78,5 +66,5 @@
             return "King";
          else
             return "" + rank;
-      }
+       }
    }
