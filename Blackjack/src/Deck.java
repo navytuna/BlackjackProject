@@ -57,29 +57,27 @@ public class Deck extends Card {
 		}
 		Split1Cnter--;
 		Split2Cnter--;
-		System.out.println(toString());
-		System.out.println("Confirm");
-		//The Bug is somewhere in this for loop
+		//Make CERTAIN to use the correct cnt!!!!!!!
 		for(int cnt = 0; cnt < 7; cnt++) {
 			for(int cnt2 = 0; cnt2 < 52; cnt2++) {
 				double choice = Math.random()*(100) + 1;
 				if(choice <= 50) {
 					if(0 < Split1Cnter) {
-						CardDeck[cnt] = Split1[Split1Cnter];
+						CardDeck[cnt2] = Split1[Split1Cnter];
 						Split1Cnter--;
 					}else {
 						if(0 < Split2Cnter) {
-							CardDeck[cnt] = Split2[Split2Cnter];
+							CardDeck[cnt2] = Split2[Split2Cnter];
 							Split2Cnter--;
 						}
 					}
 				}else {
 					if(0 < Split2Cnter) {
-						CardDeck[cnt] = Split2[Split2Cnter];
+						CardDeck[cnt2] = Split2[Split2Cnter];
 						Split2Cnter--;
 					}else {
 						if(0 < Split1Cnter) {
-							CardDeck[cnt] = Split1[Split1Cnter];
+							CardDeck[cnt2] = Split1[Split1Cnter];
 							Split1Cnter--;
 						}
 					}
