@@ -11,16 +11,16 @@ public class Deck extends Card {
 			for(int cnt2 = 0; cnt2 < 13; cnt2++) {
 				if(cnt2 == 0 || 9 < cnt2) {
 					if(cnt2 == 0) {
-						name = "ace";
+						name = "Ace";
 						value = -1;
 					}else if(cnt2 == 10) {
-						name = "jack";
+						name = "Jack";
 						value = 10;
 					}else if(cnt2 == 11) {
-						name = "queen";
+						name = "Queen";
 						value = 10;
 					}else if(cnt2 == 12) {
-						name = "king";
+						name = "King";
 						value = 10;
 					}else {
 						System.out.println("Critical Error: Cnt2 out of bounds");
@@ -42,94 +42,25 @@ public class Deck extends Card {
 	}
 	
 	public void shuffle() {
-		Card[] Split1 = new Card[26];
-		int Split1Cnter = 0;
-		Card[] Split2 = new Card[26];
-		int Split2Cnter = 0;
-		for(int cnt = 0; cnt < 52; cnt++) {
-			if(cnt == 0 || cnt%2 == 0) {
-				Split1[Split1Cnter] = CardDeck[cnt];
-				Split1Cnter++;
-			}else {
-				Split2[Split2Cnter] = CardDeck[cnt];
-				Split2Cnter++;
-			}
-		}
-		Split1Cnter--;
-		Split2Cnter--;
-		//Make CERTAIN to use the correct cnt!!!!!!!
-		for(int cnt = 0; cnt < 7; cnt++) {
-			System.out.println("(outer) This is working on " + cnt);
-			for(int cnt2 = 0; cnt2 < 52; cnt2++) {
-				System.out.println("(inner) This is working on " + cnt2);
-				double choice = Math.random()*(100) + 1;
-				int index1 = (int)Math.floor(Math.random()*23 + 1);
-				int index2 = (int)Math.floor(Math.random()*23 + 1);
-				if(choice <= 50) {
-					if(0 < Split1Cnter) {
-						int addVar = 0;
-						while(Split1[index1 + addVar].getNumber() == -2) {
-							if(24 <= index1 + addVar) {
-								addVar = 25 - (index1 + addVar);
-							}else {
-								addVar++;
-							}
-							System.out.println("Index: " + index1 + " addVar: " + addVar);
-						}
-						CardDeck[cnt2] = Split1[index1 + addVar];
-						Split1[index1 + addVar].setNumber(-2);
-						Split1Cnter--;
-					}else {
-						if(0 < Split2Cnter) {
-							int addVar = 0;
-							while(Split2[index2 + addVar].getNumber() == -2) {
-								if(24 <= index2 + addVar) {
-									addVar = 25 - (index2 + addVar);
-								}else {
-									addVar++;
-								}
-								System.out.println("Index: " + index2 + " addVar: " + addVar);
-							}
-							CardDeck[cnt2] = Split2[index2 + addVar];
-							Split2[index2 + addVar].setNumber(-2);
-							Split2Cnter--;
-						}
-					}
-				}else {
-					if(0 < Split2Cnter) {
-						if(0 < Split2Cnter) {
-							int addVar = 0;
-							while(Split2[index2 + addVar].getNumber() == -2) {
-								if(24 <= index2 + addVar) {
-									addVar = 25 - (index2 + addVar);
-								}else {
-									addVar++;
-								}
-								System.out.println("Index: " + index2 + " addVar: " + addVar);
-							}
-							CardDeck[cnt2] = Split2[index2 + addVar];
-							Split2[index2 + addVar].setNumber(-2);
-							Split2Cnter--;
-						} 	
-					}else {
-						if(0 < Split1Cnter) {
-							int addVar = 0;
-							while(Split1[index1 + addVar].getNumber() == -2) {
-								if(24 <= index1 + addVar) {
-									addVar = 25 - (index1 + addVar);
-								}else {
-									addVar++;
-								}
-								System.out.println("Index: " + index1 + " addVar: " + addVar);
-							}
-							CardDeck[cnt2] = Split1[index1 + addVar];
-							Split1[index1 + addVar].setNumber(-2);
-							Split1Cnter--;
-						}
-					}
+		for(int cnt = 0; cnt < (int)(Math.random()*100+22); cnt++) {
+			int randIndex1 = (int)(Math.random()*52);
+			int randIndex2 = 0;
+			int temp = 0;
+			for(int cnt2 = 0; cnt2 < 10000; cnt2++) {
+				temp = (int)(Math.random()*52);
+				if(temp != randIndex1) {
+					randIndex2 = temp;
+					break;
 				}
 			}
+			cardSwap(CardDeck, randIndex1, randIndex2);
 		}
+	}
+	
+	public void cardSwap(Card[] Card, int index1, int index2) {
+		Card temp = Card[index1];
+		Card[index1] = Card[index2];
+		Card[index2] = temp;
 	}
 	
 	public String toString() {
