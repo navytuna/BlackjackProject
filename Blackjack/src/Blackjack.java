@@ -2,7 +2,7 @@
 public class Blackjack extends Deck{
 
 	public static void main(String[] args) {
-		DeckTest();
+		
 	}
 	
 	public static void DeckTest() {
