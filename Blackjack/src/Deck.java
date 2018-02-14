@@ -28,17 +28,12 @@ public class Deck extends Card {
 					}
 				}
 				if(name.equals("Not Used")) {
-					System.out.println(cnt + " " + cnt2 + " " + index);
 					CardDeck[index] = new Card(cnt + 1, cnt2 + 1);
-					System.out.println(CardDeck[index].toString());
 				}else {
-					System.out.println(cnt + " " + cnt2 + " " + index);
 					CardDeck[index] = new Card(cnt + 1, value, name);
-					System.out.println(CardDeck[index].toString());
 					name = "Not Used";
 				}
 				index++;
-				System.out.println(CardDeck[0].toString());
 			}
 		}
 		for(int cnt = 0; cnt < 4; cnt++) {
