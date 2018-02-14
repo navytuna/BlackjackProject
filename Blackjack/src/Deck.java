@@ -67,8 +67,8 @@ public class Deck extends Card {
 					if(0 < Split1Cnter) {
 						int addVar = 0;
 						while(Split1[index1 + addVar].getNumber() == -2) {
-							if(index1 + addVar + 1 == 26) {
-								addVar = 26 - index1;
+							if(25 <= index1 + addVar + 1) {
+								addVar = 25 - index1;
 							}else {
 								addVar++;
 							}
@@ -80,8 +80,8 @@ public class Deck extends Card {
 						if(0 < Split2Cnter) {
 							int addVar = 0;
 							while(Split2[index2 + addVar].getNumber() == -2) {
-								if(index2 + addVar + 1 == 26) {
-									addVar = 26 - index2;
+								if(25 <= index2 + addVar + 1) {
+									addVar = 25 - index2;
 								}else {
 									addVar++;
 								}
@@ -96,8 +96,8 @@ public class Deck extends Card {
 						if(0 < Split2Cnter) {
 							int addVar = 0;
 							while(Split2[index2 + addVar].getNumber() == -2) {
-								if(index2 + addVar + 1 == 26) {
-									addVar = 26 - index2;
+								if(25 <= index2 + addVar + 1) {
+									addVar = 25 - index2;
 								}else {
 									addVar++;
 								}
@@ -110,8 +110,8 @@ public class Deck extends Card {
 						if(0 < Split1Cnter) {
 							int addVar = 0;
 							while(Split1[index1 + addVar].getNumber() == -2) {
-								if(index1 + addVar + 1 == 26) {
-									addVar = 26 - index1;
+								if(25 <= index1 + addVar + 1) {
+									addVar = 25 - index1;
 								}else {
 									addVar++;
 								}
