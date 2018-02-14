@@ -59,7 +59,9 @@ public class Deck extends Card {
 		Split2Cnter--;
 		//Make CERTAIN to use the correct cnt!!!!!!!
 		for(int cnt = 0; cnt < 7; cnt++) {
+			System.out.println("(outer) This is working on " + cnt);
 			for(int cnt2 = 0; cnt2 < 52; cnt2++) {
+				System.out.println("(inner) This is working on " + cnt2);
 				double choice = Math.random()*(100) + 1;
 				int index1 = (int)Math.floor(Math.random()*23 + 1);
 				int index2 = (int)Math.floor(Math.random()*23 + 1);
@@ -68,7 +70,7 @@ public class Deck extends Card {
 						int addVar = 0;
 						while(Split1[index1 + addVar].getNumber() == -2) {
 							if(25 <= index1 + addVar + 1) {
-								addVar = 25 - index1;
+								addVar = 26 - index1;
 							}else {
 								addVar++;
 							}
@@ -81,7 +83,7 @@ public class Deck extends Card {
 							int addVar = 0;
 							while(Split2[index2 + addVar].getNumber() == -2) {
 								if(25 <= index2 + addVar + 1) {
-									addVar = 25 - index2;
+									addVar = 26 - index2;
 								}else {
 									addVar++;
 								}
@@ -97,7 +99,7 @@ public class Deck extends Card {
 							int addVar = 0;
 							while(Split2[index2 + addVar].getNumber() == -2) {
 								if(25 <= index2 + addVar + 1) {
-									addVar = 25 - index2;
+									addVar = 26 - index2;
 								}else {
 									addVar++;
 								}
@@ -111,7 +113,7 @@ public class Deck extends Card {
 							int addVar = 0;
 							while(Split1[index1 + addVar].getNumber() == -2) {
 								if(25 <= index1 + addVar + 1) {
-									addVar = 25 - index1;
+									addVar = 26 - index1;
 								}else {
 									addVar++;
 								}
