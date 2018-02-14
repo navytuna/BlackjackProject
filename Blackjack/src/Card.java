@@ -51,7 +51,24 @@ public class Card {
 		number = numIn;
 	}
 	
+	public String suitValue() {
+		if(suit == 1) {
+			return "Spades";
+		}else if(suit == 2) {
+			return "Hearts";
+		}else if(suit == 3) {
+			return "Clubs";
+		}else if(suit == 4) {
+			return "Diamonds";
+		}
+		return "Error: Suit Data Exceeds Expectations";
+	}
+	
 	public String toString() {
-		return "Name: " + name + " Suit: " + suit + " Value: " + number;
+		if(name == null) {
+		 return "Suit: " + suitValue() + " Value: " + number;	
+		}else {
+		 return "Name: " + name + " Suit: " + suitValue() + " Value: " + number;
+		}
 	}
 }
