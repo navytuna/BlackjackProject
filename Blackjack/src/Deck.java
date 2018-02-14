@@ -67,25 +67,27 @@ public class Deck extends Card {
 					if(0 < Split1Cnter) {
 						int addVar = 0;
 						while(Split1[index1 + addVar].getNumber() == -2) {
-							if(index1 + addVar == 52) {
-								addVar = 52 - index1;
+							if(index1 + addVar + 1 == 26) {
+								addVar = 26 - index1;
 							}else {
 								addVar++;
 							}
 						}
 						CardDeck[cnt2] = Split1[index1 + addVar];
+						Split1[index1 + addVar].setNumber(-2);
 						Split1Cnter--;
 					}else {
 						if(0 < Split2Cnter) {
 							int addVar = 0;
 							while(Split2[index2 + addVar].getNumber() == -2) {
-								if(index2 + addVar == 52) {
-									addVar = 52 - index2;
+								if(index2 + addVar + 1 == 26) {
+									addVar = 26 - index2;
 								}else {
 									addVar++;
 								}
 							}
 							CardDeck[cnt2] = Split2[index2 + addVar];
+							Split2[index2 + addVar].setNumber(-2);
 							Split2Cnter--;
 						}
 					}
@@ -94,26 +96,28 @@ public class Deck extends Card {
 						if(0 < Split2Cnter) {
 							int addVar = 0;
 							while(Split2[index2 + addVar].getNumber() == -2) {
-								if(index2 + addVar == 52) {
-									addVar = 52 - index2;
+								if(index2 + addVar + 1 == 26) {
+									addVar = 26 - index2;
 								}else {
 									addVar++;
 								}
 							}
 							CardDeck[cnt2] = Split2[index2 + addVar];
+							Split2[index2 + addVar].setNumber(-2);
 							Split2Cnter--;
 						}
 					}else {
 						if(0 < Split1Cnter) {
 							int addVar = 0;
 							while(Split1[index1 + addVar].getNumber() == -2) {
-								if(index1 + addVar == 52) {
-									addVar = 52 - index1;
+								if(index1 + addVar + 1 == 26) {
+									addVar = 26 - index1;
 								}else {
 									addVar++;
 								}
 							}
 							CardDeck[cnt2] = Split1[index1 + addVar];
+							Split1[index1 + addVar].setNumber(-2);
 							Split1Cnter--;
 						}
 					}
