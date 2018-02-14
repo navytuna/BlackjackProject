@@ -61,23 +61,59 @@ public class Deck extends Card {
 		for(int cnt = 0; cnt < 7; cnt++) {
 			for(int cnt2 = 0; cnt2 < 52; cnt2++) {
 				double choice = Math.random()*(100) + 1;
+				int index1 = (int)Math.floor(Math.random()*23 + 1);
+				int index2 = (int)Math.floor(Math.random()*23 + 1);
 				if(choice <= 50) {
 					if(0 < Split1Cnter) {
-						CardDeck[cnt2] = Split1[Split1Cnter];
+						int addVar = 0;
+						while(Split1[index1 + addVar].getNumber() == -2) {
+							if(index1 + addVar == 52) {
+								addVar = 52 - index1;
+							}else {
+								addVar++;
+							}
+						}
+						CardDeck[cnt2] = Split1[index1 + addVar];
 						Split1Cnter--;
 					}else {
 						if(0 < Split2Cnter) {
-							CardDeck[cnt2] = Split2[Split2Cnter];
+							int addVar = 0;
+							while(Split2[index2 + addVar].getNumber() == -2) {
+								if(index2 + addVar == 52) {
+									addVar = 52 - index2;
+								}else {
+									addVar++;
+								}
+							}
+							CardDeck[cnt2] = Split2[index2 + addVar];
 							Split2Cnter--;
 						}
 					}
 				}else {
 					if(0 < Split2Cnter) {
-						CardDeck[cnt2] = Split2[Split2Cnter];
-						Split2Cnter--;
+						if(0 < Split2Cnter) {
+							int addVar = 0;
+							while(Split2[index2 + addVar].getNumber() == -2) {
+								if(index2 + addVar == 52) {
+									addVar = 52 - index2;
+								}else {
+									addVar++;
+								}
+							}
+							CardDeck[cnt2] = Split2[index2 + addVar];
+							Split2Cnter--;
+						}
 					}else {
 						if(0 < Split1Cnter) {
-							CardDeck[cnt2] = Split1[Split1Cnter];
+							int addVar = 0;
+							while(Split1[index1 + addVar].getNumber() == -2) {
+								if(index1 + addVar == 52) {
+									addVar = 52 - index1;
+								}else {
+									addVar++;
+								}
+							}
+							CardDeck[cnt2] = Split1[index1 + addVar];
 							Split1Cnter--;
 						}
 					}
