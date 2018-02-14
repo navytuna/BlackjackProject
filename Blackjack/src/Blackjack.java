@@ -8,6 +8,4 @@ public class Blackjack extends Deck{
 			System.out.println(test.toString(cnt));
 		}
 	}
-	
-	
 }

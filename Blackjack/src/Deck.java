@@ -69,11 +69,12 @@ public class Deck extends Card {
 					if(0 < Split1Cnter) {
 						int addVar = 0;
 						while(Split1[index1 + addVar].getNumber() == -2) {
-							if(25 <= index1 + addVar) {
-								addVar = 25 - index1;
+							if(24 <= index1 + addVar) {
+								addVar = 25 - (index1 + addVar);
 							}else {
 								addVar++;
 							}
+							System.out.println("Index: " + index1 + " addVar: " + addVar);
 						}
 						CardDeck[cnt2] = Split1[index1 + addVar];
 						Split1[index1 + addVar].setNumber(-2);
@@ -82,11 +83,12 @@ public class Deck extends Card {
 						if(0 < Split2Cnter) {
 							int addVar = 0;
 							while(Split2[index2 + addVar].getNumber() == -2) {
-								if(25 <= index2 + addVar) {
-									addVar = 25 - index2;
+								if(24 <= index2 + addVar) {
+									addVar = 25 - (index2 + addVar);
 								}else {
 									addVar++;
 								}
+								System.out.println("Index: " + index2 + " addVar: " + addVar);
 							}
 							CardDeck[cnt2] = Split2[index2 + addVar];
 							Split2[index2 + addVar].setNumber(-2);
@@ -99,10 +101,11 @@ public class Deck extends Card {
 							int addVar = 0;
 							while(Split2[index2 + addVar].getNumber() == -2) {
 								if(24 <= index2 + addVar) {
-									addVar = 25 - index2;
+									addVar = 25 - (index2 + addVar);
 								}else {
 									addVar++;
 								}
+								System.out.println("Index: " + index2 + " addVar: " + addVar);
 							}
 							CardDeck[cnt2] = Split2[index2 + addVar];
 							Split2[index2 + addVar].setNumber(-2);
@@ -113,10 +116,11 @@ public class Deck extends Card {
 							int addVar = 0;
 							while(Split1[index1 + addVar].getNumber() == -2) {
 								if(24 <= index1 + addVar) {
-									addVar = 25 - index1;
+									addVar = 25 - (index1 + addVar);
 								}else {
 									addVar++;
 								}
+								System.out.println("Index: " + index1 + " addVar: " + addVar);
 							}
 							CardDeck[cnt2] = Split1[index1 + addVar];
 							Split1[index1 + addVar].setNumber(-2);
