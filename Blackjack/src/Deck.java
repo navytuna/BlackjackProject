@@ -70,4 +70,8 @@ public class Deck extends Card {
 	public String toString(int card) {
 		return CardDeck[card].toString();
 	}
+	
+	public Card getCard(int index) {
+		return CardDeck[index];
+	}
 }

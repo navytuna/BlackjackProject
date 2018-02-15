@@ -6,7 +6,7 @@ public class Card {
 	
 	public Card() { //Placeholder card shit
 		name = "p";
-		suit =0;
+		suit = -1;
 		number = 0;
 	}
 	
