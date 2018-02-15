@@ -5,11 +5,10 @@ public class Hand extends Deck{
 	private int handBet; //Used for main betting and for split betting
 	private int runningTotal;
 	
-	public Hand(int bet) {
+	public Hand() {
 		for(int cnt = 0; cnt < 52; cnt++) {
 			hand[cnt] = new Card();
 		}
-		setBet(bet);
 	}
 	
 	public void setBet(int bet) {
@@ -47,5 +46,18 @@ public class Hand extends Deck{
 	
 	public String toString(int index) {
 		return "" + hand[index];
+	}
+	
+	public int getRunningTotal() {
+		setRunningTotal();
+		return runningTotal;
+	}
+	
+	public void setRunningTotal() {
+		int maxIndex = findNextEmpty();
+		runningTotal = 0;
+		for(int cnt = 0; cnt < maxIndex; cnt++) {
+			runningTotal += hand[cnt].getNumber();
+		}
 	}
 }
