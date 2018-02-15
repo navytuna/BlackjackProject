@@ -7,12 +7,13 @@ public class Player extends Hand{
 		Cash = 1500;
 	}
 	
-	public void bet(){
+	public void bet(Hand hand){
 		System.out.println("\nHow much do you want to bet?");
-		//System.out.println("You currently have up to " + sTotalMoney() + " to bet.";
+		System.out.println("You currently have up to " + sTotalMoney() + " to bet.");
 		Scanner sc = new Scanner(System.in);
-		int bet = Integer.parseint(sc.nextLine()); //Probably broken
-		
+		int bet = sc.nextInt();
+		hand.setBet(bet);
+		sc.close();
 	}
 	
 	public void playerTurn(){
@@ -20,7 +21,15 @@ public class Player extends Hand{
 		hand.drawCard();
 		hand.drawCard();
 		System.out.print("\n" + hand.toString() + " " + hand.toString(1));
-		bet();
+		bet(hand);
 		
+	}
+	
+	public String sTotalMoney() {
+		return "$" + Cash;
+	}
+	
+	public int getCash() {
+		return Cash;
 	}
 }

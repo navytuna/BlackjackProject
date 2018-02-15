@@ -1,10 +1,11 @@
 
 public class Blackjack extends Deck{
-	
+	private static Player testPlayer = new Player();
 	public static Deck deck = new Deck();
 	
 	public static void main(String[] args) {
 		deck.shuffle();
+		testPlayer.playerTurn();
 	}
 	
 	//Make sure to only use one deck ever
