@@ -75,4 +75,10 @@ public class Deck extends Card {
 	public Card getCard(int index) {
 		return CardDeck[index];
 	}
+	
+	public Card getCard() {
+		int card = DeckIndex;
+		DeckIndex++;
+		return CardDeck[card];
+	}
 }
