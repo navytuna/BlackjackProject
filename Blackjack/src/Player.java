@@ -74,19 +74,24 @@ public class Player extends Hand{
 			}else {
 				System.out.println("Error: That input could not be parsed by the Scanner");
 			}
+			endOfRound(hand);
 		}
 	}
 	
 	private void showHand(Hand hand) {
+		hand.setRunningTotal();
 		System.out.print("\n" + hand.toString() + " " + hand.toString(1));
+		System.out.println(hand.getRunningTotal() + " is your current total");
 	}
 	
 	private void showHand(Hand hand, int length) {
+		hand.setRunningTotal();
 		StringBuilder out = new StringBuilder();
 		for(int cnt = 0; cnt < length; cnt++) {
 			out.append(hand.toString(cnt) + " ");
 		}
 		System.out.println(out);
+		System.out.println(hand.getRunningTotal() + " is your current total");
 	}
 	
 	private void spacer() {
@@ -100,4 +105,10 @@ public class Player extends Hand{
 			System.out.println();
 		}
 	}*/}
+
+	private void endOfRound(Hand hand) {
+		int max = findNextEmpty();
+		showHand(hand, max);
+		
+	}
 }
