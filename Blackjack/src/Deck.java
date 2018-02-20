@@ -2,6 +2,7 @@
 public class Deck extends Card {
 	
 	private Card[] CardDeck = new Card[52];
+	private int DeckIndex = 0;
 	
 	public Deck() {
 		int index = 0;
