@@ -93,7 +93,7 @@ public class Player extends Hand{
 			out.append(hand.toString(cnt));
 		}
 		System.out.println(out);
-		System.out.println(hand.getRunningTotal() + " is your current total");
+		System.out.println(" " + hand.getRunningTotal() + " is your current total");
 	}
 	
 	private void spacer() {
