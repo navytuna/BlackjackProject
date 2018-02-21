@@ -56,6 +56,7 @@ public class Deck extends Card {
 			}
 			cardSwap(CardDeck, randIndex1, randIndex2);
 		}
+		DeckIndex = 0;
 	}
 	
 	public void cardSwap(Card[] Card, int index1, int index2) {
@@ -77,8 +78,15 @@ public class Deck extends Card {
 	}
 	
 	public Card getCard() {
-		int card = DeckIndex;
-		DeckIndex++;
+		int card = 0;
+		if(DeckIndex <= 52) {
+			card = DeckIndex;
+			if(DeckIndex == 52) {
+				DeckIndex = 0;
+			}else {
+				DeckIndex++;
+			}
+		}
 		return CardDeck[card];
 	}
 }
