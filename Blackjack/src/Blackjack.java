@@ -3,11 +3,18 @@ public class Blackjack extends Deck{
 	public static Player Player = new Player();
 	public static Deck deck = new Deck();
 	public static boolean isPlayerTurn = true;
+	public static boolean gameOver = false;
 	
 	public static void main(String[] args) {
+		System.out.println("Welcome.");
+		System.out.println("Please wait, the game is initializing");
 		deck.shuffle();
 		game();
-		
+		for(int cnt = 0; cnt < 40; cnt++) {
+			System.out.println("\n");
+		}
+		System.out.println("You have stood from the table.");
+		System.out.println("Come back soon");
 	}
 	
 	public static void game() {
@@ -22,6 +29,9 @@ public class Blackjack extends Deck{
 				}
 			}
 			//roundEnd();
+			if(gameOver) {
+				break;
+			}
 		}
 	}
 	
