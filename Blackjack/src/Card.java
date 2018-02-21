@@ -66,9 +66,9 @@ public class Card {
 	
 	public String toString() {
 		if(name == null) {
-		 return "Suit: " + suitValue() + " Value: " + number;	
+		 return "Suit: " + suitValue() + ". Value: " + number + ".";	
 		}else {
-		 return "Name: " + name + " Suit: " + suitValue() + " Value: " + number;
+		 return "Name: " + name + ". Suit: " + suitValue() + ". Value: " + number + ".";
 		}
 	}
 }

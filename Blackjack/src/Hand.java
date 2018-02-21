@@ -78,10 +78,11 @@ public class Hand extends Deck{
 			System.out.println("\nHow much do you want to bet?");
 			System.out.println();
 			int bet = betIn();
-			if(minimumBet - 1 < bet) {
+			if(minimumBet - 1 < bet && !(Blackjack.Player.getCash() < bet)) {
 				break;
 			}else {
 				System.out.println("\nThe minimum bet is " + getMinBet());
+				System.out.println("\nThe maximum bet is " + Blackjack.Player.getCash());
 			} 
 		}
 	}
