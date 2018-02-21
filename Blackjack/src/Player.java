@@ -9,10 +9,7 @@ public class Player extends Hand{
 	/**
 	 * EndCode key:
 	 * Code -1: Default, nothing happened, etc.
-	 * Code 0: Doubled Down
-	 * Code 1: Stood
-	 * Code 2: Busted
-	 * Code 3: Blackjacked
+	 * Code 0: Busted
 	 */
 	
 	public Player() {
@@ -25,7 +22,9 @@ public class Player extends Hand{
 		EndCode = -1;
 		Hand hand = new Hand();
 		hand.drawCard();
+		//Computer Draw
 		hand.drawCard();
+		//Computer Draw
 		showHand(hand);
 		hand.bet();
 		menu(hand);
@@ -89,7 +88,7 @@ public class Player extends Hand{
 	
 	private void showHand(Hand hand, int length) {
 		hand.setRunningTotal();
-		StringBuilder out = new StringBuilder();
+		StringBuilder out = new StringBuilder("");
 		for(int cnt = 0; cnt < length; cnt++) {
 			out.append(hand.toString(cnt));
 		}

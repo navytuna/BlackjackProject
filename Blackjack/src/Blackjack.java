@@ -28,11 +28,15 @@ public class Blackjack extends Deck{
 					break;
 				}
 			}
-			//roundEnd();
+			roundEnd();
 			if(gameOver) {
 				break;
 			}
 		}
+	}
+	
+	private static void roundEnd() {
+		isPlayerTurn = true;
 	}
 	
 	//Make sure to only use one deck ever
