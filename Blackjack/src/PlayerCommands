@@ -1,0 +1,16 @@
+Commands:
+
+	Help
+		Displays the help module
+
+	Show Hand
+		Shows the cards currently in your hand
+
+	Hit
+		Draws a new card to your hand
+
+	Double Down
+		Hits, doubles the current bet, and stands the hand
+
+	Stand
+		Ends the turn and lets the Computer play

@@ -13,7 +13,7 @@ public class Deck extends Card {
 				if(cnt2 == 0 || 9 < cnt2) {
 					if(cnt2 == 0) {
 						name = "Ace";
-						value = -1;
+						value = 11;
 					}else if(cnt2 == 10) {
 						name = "Jack";
 						value = 10;

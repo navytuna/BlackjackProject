@@ -1,60 +1,66 @@
 
 public class Blackjack extends Deck{
-	public static Player Player = new Player();
+	public static Player player = new Player();
 	public static Deck deck = new Deck();
 	public static boolean isPlayerTurn = true;
 	public static boolean gameOver = false;
+	private static int shuffleThrottle = 0;
 	
 	public static void main(String[] args) {
-		System.out.println("Welcome.");
-		System.out.println("Please wait, the game is initializing");
 		deck.shuffle();
 		game();
-		for(int cnt = 0; cnt < 40; cnt++) {
-			System.out.println("\n");
-		}
-		System.out.println("You have stood from the table.");
-		System.out.println("Come back soon");
 	}
 	
 	public static void game() {
+		System.out.println("If you get confused or forget the commands they are found in PlayerCommands.txt");
 		while(true) {
-			while(true) {
-				if(isPlayerTurn) {
-					Player.playerTurn();
-					isPlayerTurn = false;
-				}else {
-					//computer.computerTurn();
-					break;
-				}
-			}
-			roundEnd();
-			if(gameOver) {
+			Hand dealerHand = new Hand();
+			Hand hand = new Hand();
+			if(isPlayerTurn) {
+				player.playerTurn(dealerHand, hand);
+				isPlayerTurn = false;
+			}else {
+				Dealer dealer = new Dealer(dealerHand);
+				dealer.turn();
 				break;
 			}
+			roundEnd(dealerHand, hand);
+			if(gameOver) {break;}
+		}
+		System.out.print("\n\nGame Over\n\n");
+	}
+	
+	private static void roundEnd(Hand dealerHand, Hand hand) {
+		if(dealerHand.getRunningTotal() < player.getTotal() && player.getTotal() <= 21) {
+			System.out.print("\nPlayer wins ");
+			System.out.print(hand.getBet());
+			System.out.print(" with a hand of ");
+			for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
+				System.out.print(hand.toString(cnt));
+			}
+			System.out.print("\n");
+			player.moneyGain(hand);
+		}else if(dealerHand.getRunningTotal() == player.getTotal()) {
+			System.out.println("Push!");
+		}else {
+			System.out.println("Lost");
+			player.moneyLose(hand);
+		}
+		isGameOver();
+		isPlayerTurn = true;
+		gameShuffle();
+	}
+	
+	private static void gameShuffle() {
+		if(93 < Math.random()*100 + 1 && 12 < shuffleThrottle) {
+			deck.shuffle(); 
+			System.out.println("\n\nDeck Shuffled\n\n");
+		}else {
+			shuffleThrottle++;
 		}
 	}
 	
-	private static void roundEnd() {
-		isPlayerTurn = true;
+	private static void isGameOver() {
+		if(player.getCash() <= 0) {gameOver = true;}
 	}
-	
-	//Make sure to only use one deck ever
-//	public static void DeckTest() {
-//		Deck test = new Deck();
-//		test.shuffle();
-//		for(int cnt = 0; cnt < 52; cnt++) {
-//			System.out.println(test.toString(cnt));
-//		}
-//	}
-	
-//	public static void HandTest() {
-//		handTest.drawCard();
-//		System.out.println(handTest.toString());
-//		handTest.drawCard();
-//		System.out.println(handTest.toString(1));
-//		handTest.drawCard();
-//		System.out.println(handTest.toString(2));
-//	}
-	
 }

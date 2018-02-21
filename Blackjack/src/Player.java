@@ -2,35 +2,27 @@ import java.util.Scanner;
 import java.lang.StringBuilder;
 
 public class Player extends Hand{
-	private int Cash, EndCode;
+	private int Cash;
 	private Scanner sc = new Scanner(System.in);
 	private boolean shouldBreak;
 	
-	/**
-	 * EndCode key:
-	 * Code -1: Default, nothing happened, etc.
-	 * Code 0: Busted
-	 */
-	
 	public Player() {
 		Cash = 1500;
-		EndCode = -1;
 		shouldBreak = false;
 	}
 	
-	public void playerTurn(){
-		EndCode = -1;
-		Hand hand = new Hand();
+	public void playerTurn(Hand Dealer, Hand hand) {
 		hand.drawCard();
-		//Computer Draw
+		Dealer.drawCard();
 		hand.drawCard();
-		//Computer Draw
+		Dealer.drawCard();
+		System.out.print("\nDealer's hand:");
+		System.out.print("\n" + Dealer.toString());
+		System.out.print("\n\nYour hand");
 		showHand(hand);
+		System.out.print("\n" + sTotalMoney());
 		hand.bet();
 		menu(hand);
-		if(EndCode == 0) {
-			moneyLoss(hand);
-		}
 	}
 	
 	public String sTotalMoney() {
@@ -45,103 +37,86 @@ public class Player extends Hand{
 		while(true) {
 			System.out.println("Input your command");
 			String in = sc.nextLine();
-			if("help".equals(in) || "Help".equals(in)) {
-				spacer();
-				System.out.println("Commands:");
-				System.out.println("\n\tHelp");
-				System.out.println("\t\tDisplays the help module");
-				System.out.println("\n\tShow Hand");
-				System.out.println("\t\tShows the cards currently in your hand");
-				System.out.println("\n\tHit");
-				System.out.println("\t\tDraws a new card to your hand");
-				System.out.println("\n\tDouble Down");
-				System.out.println("\t\tHits, doubles the current bet, and stands the hand");
-				System.out.println("\n\tStand");
-				System.out.println("\t\tEnds the turn and lets the Computer play");
-			}else if("Show Hand".equals(in) || "show hand".equals(in) || "show Hand".equals(in) || "Show hand".equals(in)) {
-				spacer();
-				int max = hand.findNextEmpty();
-				showHand(hand, max);
+			if("Show Hand".equals(in) || "show hand".equals(in) || "show Hand".equals(in) || "Show hand".equals(in)) {
+				showHand(hand, hand.findNextEmpty());
 			}else if("hit".equals(in) || "Hit".equals(in)) {
 				hit(hand);
 			}else if("Double Down".equals(in) || "double down".equals(in) || "double Down".equals(in) || "Double down".equals(in)) {
 				hand.drawCard();
 				hand.setBet(hand.getBet() * 2);
-				break;
+				shouldBreak = true;
 			}else if("Stand".equals(in) || "stand".equals(in)) {
-				break;
+				shouldBreak = true;
 			}else {
 				System.out.println("Error: That input could not be parsed by the Scanner");
 			}
 			endOfRound(hand);
-			if(shouldBreak == true) {
-				break;
-			}
+			if(shouldBreak) {break;}
 		}
 	}
 	
-	private void showHand(Hand hand) {
+	public void showHand(Hand hand) {
 		hand.setRunningTotal();
 		System.out.print("\n" + hand.toString() + "\n" + hand.toString(1));
-		System.out.print("\n" + hand.getRunningTotal() + " is your current total");
+		System.out.print("\n" + hand.getRunningTotal() + " is the hand's current total");
 	}
 	
-	private void showHand(Hand hand, int length) {
+	public void showHand(Hand hand, int length) {
 		hand.setRunningTotal();
 		StringBuilder out = new StringBuilder("");
 		for(int cnt = 0; cnt < length; cnt++) {
 			out.append(hand.toString(cnt));
 		}
 		System.out.println(out);
-		System.out.println(" " + hand.getRunningTotal() + " is your current total");
-	}
-	
-	private void spacer() {
-		for(int cnt = 0; cnt < 20; cnt++) {
-			System.out.println();
-		}
+		System.out.println(" " + hand.getRunningTotal() + " is the hand's current total");
 	}
 	
 	private void endOfRound(Hand hand) {
-		int max = findNextEmpty();
-		showHand(hand, max);
-		if(21 < hand.getRunningTotal()) {
+		if(21 < hand.getRunningTotal() && !(checkAce(hand))) {
 			System.out.println("Player Busts!");
 			shouldBreak = true;
-			EndCode = 0;
+		}else if(21 < hand.getRunningTotal() && checkAce(hand)) {
+			hand.hand[findAce(hand)].setNumber(1);
 		}
 		if(21 == hand.getRunningTotal()) {
 			System.out.println("Player Blackjacks!");
+			hand.setBet(hand.getBet() + (int)(hand.getBet() * .5));
 			shouldBreak = true;
 		}
 	}
 	
-	private void moneyLoss(Hand hand) {
-		Cash = Cash - hand.getBet();
+	public void moneyLose(Hand hand) {
+		Cash -= hand.getBet();
+	}
+	
+	public void moneyGain(Hand hand) {
+		Cash += hand.getBet();
 	}
 
 	private void hit(Hand hand) {
 		hand.drawCard();
-		System.out.print("\nThis is the card that was drawn: " + hand.toString(hand.findNextEmpty() - 1));
+		System.out.println("\nThis is the card that was drawn: " + hand.toString(hand.findNextEmpty() - 1));
+	}
+	
+	public int getTotal() {
+		return 1;
+	}
+	
+	public boolean checkAce(Hand hand) {
+		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
+			if(hand.hand[cnt].getNumber() == 11) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int findAce(Hand hand) {
+		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
+			if(hand.hand[cnt].getNumber() == 11) {
+				return cnt;
+			}
+		}
+		return 0;
 	}
 }
-
-/*else if("Split".equals(in) || "split".equals(in)) {
-				if(hand.getCard(0).getNumber() == hand.getCard(1).getNumber()) {
-					Hand split1 = new Hand();
-					split1.setCard(0, hand.getCard(0));
-					split1.drawCard();
-					Hand split2 = new Hand();
-					split2.setCard(0, hand.getCard(0));
-					split2.drawCard();
-					EndCode = 2;
-					shouldBreak = true;
-				}else {
-					System.out.println("Error: You can not split this hand");
-				}
-				
-//				System.out.println("\n\tSplit");
-//				System.out.println("\t\tSplits the hand into two separate hands.");
-//				System.out.println("\t\tCan be done multiple times");
-//				System.out.println("\t\t***Note: If you split it will ask you which hand");
-*/

@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Hand extends Deck{
 	
-	private Card[] hand = new Card[52];
+	public Card[] hand = new Card[52];
 	private int handBet; //Used for main betting and for split betting
 	private int runningTotal;
 	private int minimumBet;
@@ -78,11 +78,11 @@ public class Hand extends Deck{
 			System.out.println("\nHow much do you want to bet?");
 			System.out.println();
 			int bet = betIn();
-			if(minimumBet - 1 < bet && !(Blackjack.Player.getCash() < bet)) {
+			if(minimumBet - 1 < bet && !(Blackjack.player.getCash() < bet)) {
 				break;
 			}else {
 				System.out.println("\nThe minimum bet is " + getMinBet());
-				System.out.println("\nThe maximum bet is " + Blackjack.Player.getCash());
+				System.out.println("\nThe maximum bet is " + Blackjack.player.getCash());
 			} 
 		}
 	}
