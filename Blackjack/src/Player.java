@@ -109,6 +109,16 @@ public class Player extends Hand{
 	private void endOfRound(Hand hand) {
 		int max = findNextEmpty();
 		showHand(hand, max);
-		
+		if(21 < hand.getRunningTotal()) {
+			System.out.println("Player Busts!");
+			bust();
+		}
+		if(21 == hand.getRunningTotal()) {
+			System.out.println("Player Blackjacks!");
+		}
+	}
+	
+	private void bust() {
+		//TODO: Exit the player and have it bust
 	}
 }
