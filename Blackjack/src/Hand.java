@@ -18,12 +18,18 @@ public class Hand {
 	
 	public void drawCard() {
 		Card draw = Blackjack.deck.getCard();
-		hand[findNextEmpty()] = draw;
+		setCard(findNextEmpty(), draw);
 	}
 	
-	public String toString() {return "" + hand[0];}
+	public String toString() {
+		if(hand[0].getName()!= null) {return hand[0].getName() + " of " + hand[0].suitValue();}
+		else return "" + hand[0].getNumber() +" of " + hand[0].suitValue();
+	}
 	
-	public String toString(int index) {return "" + hand[index];}
+	public String toString(int index) {
+		if(hand[index].getName() != null) {return hand[index].getName() + " of " + hand[index].suitValue();}
+		else return "" + hand[index].getNumber() + " of " + hand[index].suitValue();
+	}
 	
 	public int findNextEmpty() {
 		boolean found = false;
@@ -60,7 +66,7 @@ public class Hand {
 				System.out.println("\nThe maximum bet is " + Blackjack.player.getCash());
 			} 
 		}
-		System.out.print("\nYou bet " + handBet + "\n");
+		System.out.print("\nYou bet $" + handBet + "\n");
 	}
 	
 	private int betIn(){

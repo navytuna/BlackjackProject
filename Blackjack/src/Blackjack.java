@@ -12,13 +12,15 @@ public class Blackjack {
 		while(true) {
 			Hand dealerHand = new Hand();
 			Hand hand = new Hand();
-			if(isPlayerTurn) {
-				player.playerTurn(dealerHand, hand);
-				isPlayerTurn = false;
-			}else {
-				Dealer dealer = new Dealer(dealerHand);
-				dealer.turn();
-				break;
+			while(true) {
+				if(isPlayerTurn) {
+					player.playerTurn(dealerHand, hand);
+					isPlayerTurn = false;
+				}else {
+					Dealer dealer = new Dealer(dealerHand);
+					dealer.turn();
+					break;
+				}
 			}
 			roundEnd(dealerHand, hand);
 			if(gameOver) {break;}
@@ -33,9 +35,8 @@ public class Blackjack {
 			System.out.print("\nOver the dealer's hand of");
 			endRound(dealerHand);
 			player.moneyGain(hand);
-		}else if(dealerHand.getRunningTotal() == hand.getRunningTotal()) {
-			System.out.println("Push!");
-		}else {
+		}else if(dealerHand.getRunningTotal() == hand.getRunningTotal()) {System.out.println("Push!");}
+		else {
 			System.out.print("\nPlayer loses ");
 			endRound(hand);
 			System.out.print("\nTo the dealer's hand of");
@@ -55,7 +56,7 @@ public class Blackjack {
 	}
 	
 	private static void endRound(Hand hand) {
-		if(0 < hand.getBet()) {System.out.print(hand.getBet());} //Prevents the 0 bet of the dealer's hand from cropping up
+		if(0 < hand.getBet()) {System.out.print("$" +hand.getBet());} //Prevents the 0 bet of the dealer's hand from cropping up
 		System.out.print(" with a hand of ");
 		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {System.out.print(hand.toString(cnt) + " ");}
 		System.out.print("\n");

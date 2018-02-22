@@ -16,7 +16,7 @@ public class Player extends Hand{
 		System.out.print("\n" + Dealer.toString());
 		System.out.print("\n\nYour hand");
 		showHand(hand);
-		System.out.print("\n$" + getCash());
+		System.out.print("\nYou have $" + getCash() + " to bet");
 		hand.bet();
 		menu(hand);
 	}
@@ -75,7 +75,7 @@ public class Player extends Hand{
 
 	private void hit(Hand hand) {
 		hand.drawCard();
-		System.out.println("\nThis is the card that was drawn: " + hand.toString(hand.findNextEmpty() - 1));
+		System.out.println("\nThe " + hand.toString(hand.findNextEmpty() - 1) + " was drawn bringing the hand to a total of " + hand.getRunningTotal());
 	}
 	
 	public boolean checkAce(Hand hand) {
