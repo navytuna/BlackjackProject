@@ -59,7 +59,7 @@ public class Hand {
 	public void bet() {
 		while(true) {
 			System.out.println("\nHow much do you want to bet?\n");
-			handBet = betIn();
+			try{handBet = betIn();}catch (java.util.InputMismatchException e) {System.out.print("\n\nERROR! Do not input anything other than a number when betting. The bet has defaulted to $1"); handBet = 1;}
 			if(minimumBet - 1 < handBet && !(Blackjack.player.getCash() < handBet)) {break;}
 			else {
 				System.out.println("\nThe minimum bet is " + minimumBet);
@@ -69,7 +69,7 @@ public class Hand {
 		System.out.print("\nYou bet $" + handBet + "\n");
 	}
 	
-	private int betIn(){
+	private int betIn() throws java.util.InputMismatchException{
 		int bet = sc.nextInt();
 		return bet;
 	}

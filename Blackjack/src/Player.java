@@ -34,7 +34,7 @@ public class Player extends Hand{
 				hand.setBet(hand.getBet() * 2);
 				shouldBreak = true;
 			}else if("Stand".equals(in) || "stand".equals(in)) {shouldBreak = true;}
-			else System.out.println("The Input either couldn't be parsed or the command could not be completed");
+			else System.out.println("The Input either couldn't be parsed or the command could not be completed\n");
 			endOfRound(hand);
 			if(shouldBreak) {break;}
 		}
@@ -75,6 +75,7 @@ public class Player extends Hand{
 
 	private void hit(Hand hand) {
 		hand.drawCard();
+		if(21 < hand.getRunningTotal() && hand.hand[hand.findNextEmpty() -1].getNumber() == 11) hand.hand[hand.findNextEmpty() -1].setNumber(1);
 		System.out.println("\nThe " + hand.toString(hand.findNextEmpty() - 1) + " was drawn bringing the hand to a total of " + hand.getRunningTotal());
 	}
 	

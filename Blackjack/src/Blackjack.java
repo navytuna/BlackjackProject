@@ -32,15 +32,17 @@ public class Blackjack {
 		if(dealerHand.getRunningTotal() < hand.getRunningTotal() && hand.getRunningTotal() <= 21) {
 			System.out.print("\nPlayer wins ");
 			endRound(hand);
-			System.out.print("\nOver the dealer's hand of");
+			System.out.print(" over the dealer's hand  ");
 			endRound(dealerHand);
+			System.out.print("\n");
 			player.moneyGain(hand);
 		}else if(dealerHand.getRunningTotal() == hand.getRunningTotal()) {System.out.println("Push!");}
 		else {
 			System.out.print("\nPlayer loses ");
 			endRound(hand);
-			System.out.print("\nTo the dealer's hand of");
+			System.out.print(" to the dealer's hand  ");
 			endRound(dealerHand);
+			System.out.print("\n");
 			player.moneyLose(hand);
 		}
 		if(player.getCash() <= 0) {gameOver = true;}
@@ -56,9 +58,11 @@ public class Blackjack {
 	}
 	
 	private static void endRound(Hand hand) {
-		if(0 < hand.getBet()) {System.out.print("$" +hand.getBet());} //Prevents the 0 bet of the dealer's hand from cropping up
-		System.out.print(" with a hand of ");
-		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {System.out.print(hand.toString(cnt) + " ");}
-		System.out.print("\n");
+		if(0 < hand.getBet()) {System.out.print("$" +hand.getBet()); System.out.print(" with the hand ");} //Prevents the 0 bet of the dealer's hand from cropping up
+		if(hand.findNextEmpty() != 2) {
+			for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
+				if(cnt < hand.findNextEmpty() - 1) {System.out.print(hand.toString(cnt) + ", ");} else {System.out.print("and " + hand.toString(cnt));}
+			}
+		}else {System.out.print("containing the " + hand.toString(0) +  " and the " + hand.toString(1));}
 	}
 }
