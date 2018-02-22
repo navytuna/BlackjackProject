@@ -1,6 +1,5 @@
 
-public class Deck extends Card {
-	
+public class Deck {
 	private Card[] CardDeck = new Card[52];
 	private int DeckIndex = 0;
 	
@@ -24,13 +23,12 @@ public class Deck extends Card {
 						name = "King";
 						value = 10;
 					}else {
-						System.out.println("Critical Error: Cnt2 out of bounds");
-						System.exit(1);
+						System.out.println("Error: Cnt2 out of bounds");
+						System.exit(0);
 					}
 				}
-				if(name.equals("Not Used")) {
-					CardDeck[index] = new Card(cnt + 1, cnt2 + 1);
-				}else {
+				if(name.equals("Not Used")) {CardDeck[index] = new Card(cnt + 1, cnt2 + 1);}
+				else {
 					CardDeck[index] = new Card(cnt + 1, value, name);
 					name = "Not Used";
 				}
@@ -63,19 +61,12 @@ public class Deck extends Card {
 		Card[index2] = temp;
 	}
 	
-	public Card getCard(int index) {
-		return CardDeck[index];
-	}
-	
 	public Card getCard() { //Functions so that the next card off of the stack is drawn rather than the same card
 		int card = 0;
 		if(DeckIndex <= 52) {
 			card = DeckIndex;
-			if(DeckIndex == 52) {
-				DeckIndex = 0;
-			}else {
-				DeckIndex++;
-			}
+			if(DeckIndex == 52) {DeckIndex = 0;}
+			else {DeckIndex++;}
 		}
 		return CardDeck[card];
 	}

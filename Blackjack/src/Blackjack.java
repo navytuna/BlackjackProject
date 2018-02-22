@@ -1,14 +1,11 @@
-
-public class Blackjack extends Deck{
+public class Blackjack {
 	public static Player player = new Player();
 	public static Deck deck = new Deck();
 	public static boolean isPlayerTurn = true;
 	public static boolean gameOver = false;
 	private static int shuffleThrottle = 0;
 	
-	public static void main(String[] args) {
-		game();
-	}
+	public static void main(String[] args) {game();}
 	
 	public static void game() {
 		System.out.println("If you get confused or forget the commands they are found in PlayerCommands.txt");
@@ -54,17 +51,13 @@ public class Blackjack extends Deck{
 		if(9 < Math.random()*10 + 1 && 12 < shuffleThrottle) {
 			deck.shuffle(); 
 			System.out.println("\n\nDeck Shuffled\n\n");
-		}else {
-			shuffleThrottle++;
-		}
+		}else shuffleThrottle++;
 	}
 	
 	private static void endRound(Hand hand) {
 		if(0 < hand.getBet()) {System.out.print(hand.getBet());} //Prevents the 0 bet of the dealer's hand from cropping up
 		System.out.print(" with a hand of ");
-		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
-			System.out.print(hand.toString(cnt) + " ");
-		}
+		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {System.out.print(hand.toString(cnt) + " ");}
 		System.out.print("\n");
 	}
 }
