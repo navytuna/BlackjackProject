@@ -31,19 +31,19 @@ public class Blackjack extends Deck{
 	}
 	
 	private static void roundEnd(Hand dealerHand, Hand hand) {
-		if(dealerHand.getRunningTotal() < player.getTotal() && player.getTotal() <= 21) {
+		if(dealerHand.getRunningTotal() < hand.getRunningTotal() && hand.getRunningTotal() <= 21) {
 			System.out.print("\nPlayer wins ");
-			System.out.print(hand.getBet());
-			System.out.print(" with a hand of ");
-			for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
-				System.out.print(hand.toString(cnt));
-			}
-			System.out.print("\n");
+			endRound(hand);
+			System.out.print("\nOver the dealer's hand of");
+			endRound(dealerHand);
 			player.moneyGain(hand);
-		}else if(dealerHand.getRunningTotal() == player.getTotal()) {
+		}else if(dealerHand.getRunningTotal() == hand.getRunningTotal()) {
 			System.out.println("Push!");
 		}else {
-			System.out.println("Lost");
+			System.out.print("\nPlayer loses ");
+			endRound(hand);
+			System.out.print("\nTo the dealer's hand of");
+			endRound(dealerHand);
 			player.moneyLose(hand);
 		}
 		isGameOver();
@@ -62,5 +62,14 @@ public class Blackjack extends Deck{
 	
 	private static void isGameOver() {
 		if(player.getCash() <= 0) {gameOver = true;}
+	}
+	
+	private static void endRound(Hand hand) {
+		if(0 < hand.getBet()) {System.out.print(hand.getBet());}
+		System.out.print(" with a hand of ");
+		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
+			System.out.print(hand.toString(cnt) + " ");
+		}
+		System.out.print("\n");
 	}
 }
