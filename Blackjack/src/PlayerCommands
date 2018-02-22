@@ -11,6 +11,7 @@ Commands:
 
 	Double Down
 		Hits, doubles the current bet, and stands the hand
+		***Note: If your bet * 2 is more than your current cash you will be unable to complete this command
 
 	Stand
 		Ends the turn and lets the Computer play

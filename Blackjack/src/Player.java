@@ -2,14 +2,11 @@ import java.util.Scanner;
 import java.lang.StringBuilder;
 
 public class Player extends Hand{
-	private int Cash;
+	private int Cash = 1500;
 	private Scanner sc = new Scanner(System.in);
-	private boolean shouldBreak;
+	private boolean shouldBreak = false;
 	
-	public Player() {
-		Cash = 1500;
-		shouldBreak = false;
-	}
+	public Player() {}
 	
 	public void playerTurn(Hand Dealer, Hand hand) {
 		hand.drawCard();
@@ -20,13 +17,9 @@ public class Player extends Hand{
 		System.out.print("\n" + Dealer.toString());
 		System.out.print("\n\nYour hand");
 		showHand(hand);
-		System.out.print("\n" + sTotalMoney());
+		System.out.print("\n$" + getCash());
 		hand.bet();
 		menu(hand);
-	}
-	
-	public String sTotalMoney() {
-		return "$" + Cash;
 	}
 	
 	public int getCash() {
@@ -41,14 +34,14 @@ public class Player extends Hand{
 				showHand(hand, hand.findNextEmpty());
 			}else if("hit".equals(in) || "Hit".equals(in)) {
 				hit(hand);
-			}else if("Double Down".equals(in) || "double down".equals(in) || "double Down".equals(in) || "Double down".equals(in)) {
+			}else if(("Double Down".equals(in) || "double down".equals(in) || "double Down".equals(in) || "Double down".equals(in)) && hand.getBet() * 2 <= Cash) {
 				hand.drawCard();
 				hand.setBet(hand.getBet() * 2);
 				shouldBreak = true;
 			}else if("Stand".equals(in) || "stand".equals(in)) {
 				shouldBreak = true;
 			}else {
-				System.out.println("Error: That input could not be parsed by the Scanner");
+				System.out.println("The Input either couldn't be parsed or the command could not be completed");
 			}
 			endOfRound(hand);
 			if(shouldBreak) {break;}
@@ -80,7 +73,7 @@ public class Player extends Hand{
 		}
 		if(21 == hand.getRunningTotal()) {
 			System.out.println("Player Blackjacks!");
-			hand.setBet(hand.getBet() + (int)(hand.getBet() * .5));
+			hand.setBet(hand.getBet() + (int)(hand.getBet() * .5)); //When you blackjack you get 1.5 times your bet
 			shouldBreak = true;
 		}
 	}
@@ -113,6 +106,6 @@ public class Player extends Hand{
 				return cnt;
 			}
 		}
-		return 0;
+		return 0; //Shouldn't happen ever
 	}
 }

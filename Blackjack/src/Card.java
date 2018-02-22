@@ -4,7 +4,7 @@ public class Card {
 	private int suit, number;
 	private String name; //For facecards only
 	
-	public Card() { //Placeholder card shit
+	public Card() {
 		name = "p";
 		suit = -1;
 		number = 0;
@@ -66,9 +66,9 @@ public class Card {
 	
 	public String toString() {
 		if(name == null) {
-		 return "Suit: " + suitValue() + ". Value: " + number + ".";	
+			return "Suit: " + suitValue() + ". Value: " + number + ".";	
 		}else {
-		 return "Name: " + name + ". Suit: " + suitValue() + ". Value: " + number + ".";
+			return "Name: " + name + ". Suit: " + suitValue() + ". Value: " + number + ".";
 		}
 	}
 }

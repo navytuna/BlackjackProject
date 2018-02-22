@@ -37,9 +37,7 @@ public class Deck extends Card {
 				index++;
 			}
 		}
-		for(int cnt = 0; cnt < 4; cnt++) {
-			shuffle();
-		}
+		for(int cnt = 0; cnt < 8; cnt++) {shuffle();}
 	}
 	
 	public void shuffle() {
@@ -65,19 +63,11 @@ public class Deck extends Card {
 		Card[index2] = temp;
 	}
 	
-	public String toString() {
-		return CardDeck[0].toString();
-	}
-	
-	public String toString(int card) {
-		return CardDeck[card].toString();
-	}
-	
 	public Card getCard(int index) {
 		return CardDeck[index];
 	}
 	
-	public Card getCard() {
+	public Card getCard() { //Functions so that the next card off of the stack is drawn rather than the same card
 		int card = 0;
 		if(DeckIndex <= 52) {
 			card = DeckIndex;

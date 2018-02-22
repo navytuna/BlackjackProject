@@ -7,7 +7,6 @@ public class Blackjack extends Deck{
 	private static int shuffleThrottle = 0;
 	
 	public static void main(String[] args) {
-		deck.shuffle();
 		game();
 	}
 	
@@ -46,13 +45,13 @@ public class Blackjack extends Deck{
 			endRound(dealerHand);
 			player.moneyLose(hand);
 		}
-		isGameOver();
+		if(player.getCash() <= 0) {gameOver = true;}
 		isPlayerTurn = true;
 		gameShuffle();
 	}
 	
 	private static void gameShuffle() {
-		if(93 < Math.random()*100 + 1 && 12 < shuffleThrottle) {
+		if(9 < Math.random()*10 + 1 && 12 < shuffleThrottle) {
 			deck.shuffle(); 
 			System.out.println("\n\nDeck Shuffled\n\n");
 		}else {
@@ -60,12 +59,8 @@ public class Blackjack extends Deck{
 		}
 	}
 	
-	private static void isGameOver() {
-		if(player.getCash() <= 0) {gameOver = true;}
-	}
-	
 	private static void endRound(Hand hand) {
-		if(0 < hand.getBet()) {System.out.print(hand.getBet());}
+		if(0 < hand.getBet()) {System.out.print(hand.getBet());} //Prevents the 0 bet of the dealer's hand from cropping up
 		System.out.print(" with a hand of ");
 		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
 			System.out.print(hand.toString(cnt) + " ");
