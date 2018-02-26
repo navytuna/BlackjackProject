@@ -49,8 +49,7 @@ public class Player extends Hand{
 	private void endOfRound(Hand hand) {
 		if(21 < hand.getRunningTotal() && !(checkAce(hand))) {System.out.println("Player Busts!"); shouldBreak = true;}
 		//^Checks for bust
-		else if(21 < hand.getRunningTotal() && checkAce(hand)) {hand.hand[findAce(hand)].setNumber(1); endOfRound(hand);}
-		//^Checks to see if the hand blackjacks with the ace valued at one. Rare, but a possibility
+		else if(21 < hand.getRunningTotal() && checkAce(hand)) {hand.hand[findAce(hand)].setNumber(1);}
 		if(21 == hand.getRunningTotal()) {System.out.println("Player Blackjacks!"); hand.setBet(hand.getBet() + (int)(hand.getBet() * .5)); shouldBreak = true;}
 		//^Checks for a blackjack
 	}
