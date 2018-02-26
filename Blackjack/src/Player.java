@@ -14,8 +14,8 @@ public class Player extends Hand{
 		Dealer.drawCard();
 		System.out.print("\nDealer's shown card:");
 		System.out.print("\n" + Dealer.toString());
-		System.out.print("\n\nYour hand");
-		showHand(hand);
+		System.out.println("\n\nYour hand:");
+		showHand(hand, hand.findNextEmpty());
 		System.out.print("\nYou have $" + getCash() + " to bet");
 		hand.bet();
 		menu(hand);
@@ -40,18 +40,12 @@ public class Player extends Hand{
 		}
 	}
 	
-	public void showHand(Hand hand) {
-		hand.setRunningTotal();
-		System.out.print("\n" + hand.toString() + "\n" + hand.toString(1));
-		System.out.print("\n" + hand.getRunningTotal() + " is the hand's current total");
-	}
-	
 	public void showHand(Hand hand, int length) {
 		hand.setRunningTotal();
 		StringBuilder out = new StringBuilder("");
-		for(int cnt = 0; cnt < length; cnt++) {out.append(hand.toString(cnt));}
+		for(int cnt = 0; cnt < length; cnt++) {out.append(hand.toString(cnt)); if((cnt + 1) != length) {out.append(", ");};}
 		System.out.println(out);
-		System.out.println(" " + hand.getRunningTotal() + " is the hand's current total");
+		System.out.println("" + hand.getRunningTotal() + " is the hand's current total");
 	}
 	
 	private void endOfRound(Hand hand) {
