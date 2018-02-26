@@ -29,12 +29,10 @@ public class Player extends Hand{
 			String in = sc.nextLine();
 			if("Show Hand".equals(in) || "show hand".equals(in) || "show Hand".equals(in) || "Show hand".equals(in)) {showHand(hand, hand.findNextEmpty());}
 			else if("hit".equals(in) || "Hit".equals(in)) {hit(hand);}
-			else if(("Double Down".equals(in) || "double down".equals(in) || "double Down".equals(in) || "Double down".equals(in)) && hand.getBet() * 2 <= Cash) {
-				hand.drawCard();
-				hand.setBet(hand.getBet() * 2);
-				shouldBreak = true;
-			}else if("Stand".equals(in) || "stand".equals(in)) {shouldBreak = true;}
-			else System.out.println("The Input either couldn't be parsed or the command could not be completed\n");
+			else if(("Double Down".equals(in) || "double down".equals(in) || "double Down".equals(in) || "Double down".equals(in)) && hand.getBet() * 2 <= Cash) {hand.drawCard(); hand.setBet(hand.getBet() * 2); shouldBreak = true;}
+			else if("Stand".equals(in) || "stand".equals(in)) {shouldBreak = true;}
+			else if("Exit".equals(in) || "exit".equals(in)) {System.out.println("\n\nExit Succesful"); System.exit(0);}
+			else {System.out.println("The Input either couldn't be parsed or the command could not be completed\n");}
 			endOfRound(hand);
 			if(shouldBreak) {break;}
 		}
@@ -49,18 +47,12 @@ public class Player extends Hand{
 	}
 	
 	private void endOfRound(Hand hand) {
-		if(21 < hand.getRunningTotal() && !(checkAce(hand))) {
-			System.out.println("Player Busts!");
-			shouldBreak = true;
-		}else if(21 < hand.getRunningTotal() && checkAce(hand)) {
-			hand.hand[findAce(hand)].setNumber(1);
-			endOfRound(hand); //Checking to see if the player Blackjacks with an ace at 1. Rare but a possibility
-		}
-		if(21 == hand.getRunningTotal()) {
-			System.out.println("Player Blackjacks!");
-			hand.setBet(hand.getBet() + (int)(hand.getBet() * .5)); //When you blackjack you get 1.5 times your bet
-			shouldBreak = true;
-		}
+		if(21 < hand.getRunningTotal() && !(checkAce(hand))) {System.out.println("Player Busts!"); shouldBreak = true;}
+		//^Checks for bust
+		else if(21 < hand.getRunningTotal() && checkAce(hand)) {hand.hand[findAce(hand)].setNumber(1); endOfRound(hand);}
+		//^Checks to see if the hand blackjacks with the ace valued at one. Rare, but a possibility
+		if(21 == hand.getRunningTotal()) {System.out.println("Player Blackjacks!"); hand.setBet(hand.getBet() + (int)(hand.getBet() * .5)); shouldBreak = true;}
+		//^Checks for a blackjack
 	}
 	
 	public void moneyLose(Hand hand) {Cash -= hand.getBet();}
@@ -74,16 +66,12 @@ public class Player extends Hand{
 	}
 	
 	public boolean checkAce(Hand hand) {
-		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
-			if(hand.hand[cnt].getNumber() == 11) {return true;}
-		}
-		return false;
+		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {if(hand.hand[cnt].getNumber() == 11) {return true;}}
+		return false; //Doesn't find an ace
 	}
 	
 	public int findAce(Hand hand) {
-		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
-			if(hand.hand[cnt].getNumber() == 11) {return cnt;}
-		}
-		return 0; //Shouldn't happen ever
+		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {if(hand.hand[cnt].getNumber() == 11) {return cnt;}}
+		return -1; //For compiling only. It should never be returned
 	}
 }

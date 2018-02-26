@@ -6,10 +6,7 @@ public class Dealer extends Player {
 	public void turn() {
 		while(true) {
 			if(myHand.getRunningTotal() < 17) {myHand.drawCard();}
-			if(17 <= myHand.getRunningTotal()) {
-				if(21 <= myHand.getRunningTotal() && !(this.checkAce(myHand))) {myHand.hand[this.findAce(myHand)].setNumber(1);}
-				else break;
-			}
+			if(17 <= myHand.getRunningTotal()) {if(21 <= myHand.getRunningTotal() && !(this.checkAce(myHand))) {myHand.hand[this.findAce(myHand)].setNumber(1);} else break;}
 		}
 	}
 	

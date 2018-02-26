@@ -4,28 +4,13 @@ public class Card {
 	private int suit, number;
 	private String name; //For facecards only
 	
-	public Card() {
-		name = "p";
-		suit = -1;
-		number = 0;
-	}
+	public Card() {name = "p"; suit = -1; number = 0;}
 	
-	public Card(int initSuit, int initNum) {
-		suit = initSuit;
-		number = initNum;
-	}
+	public Card(int initSuit, int initNum) {suit = initSuit; number = initNum;}
 	
-	public Card(int initSuit, int initNum, String initName) {
-		name = initName;
-		suit = initSuit;
-		number = initNum;
-	}
+	public Card(int initSuit, int initNum, String initName) {name = initName; suit = initSuit; number = initNum;}
 	
-	public Card(Card arg) {
-		name = arg.getName();
-		suit = arg.getSuit();
-		number = arg.getNumber();
-	}
+	public Card(Card arg) {name = arg.getName(); suit = arg.getSuit(); number = arg.getNumber();}
 	
 	public String getName() {return name;}
 	
@@ -43,8 +28,5 @@ public class Card {
 		return "Error: Suit Data Exceeds Expectations";
 	}
 	
-	public boolean isFaceCard() {
-		if("p".equals(this.getName())) {return false;}
-		return true;
-	}
+	public boolean isFaceCard() {if("p".equals(this.getName())) {return false;} return true;}
 }

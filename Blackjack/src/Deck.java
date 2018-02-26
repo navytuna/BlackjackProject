@@ -9,29 +9,15 @@ public class Deck {
 		int value = 0;
 		for(int cnt = 0; cnt < 4; cnt++) {
 			for(int cnt2 = 0; cnt2 < 13; cnt2++) {
-				if(cnt2 == 0 || 9 < cnt2) {
-					if(cnt2 == 0) {
-						name = "Ace";
-						value = 11;
-					}else if(cnt2 == 10) {
-						name = "Jack";
-						value = 10;
-					}else if(cnt2 == 11) {
-						name = "Queen";
-						value = 10;
-					}else if(cnt2 == 12) {
-						name = "King";
-						value = 10;
-					}else {
-						System.out.println("Error: Cnt2 out of bounds");
-						System.exit(0);
-					}
+				if(cnt2 == 0 || 9 < cnt2) {		//Setting Card Names
+					if(cnt2 == 0) {name = "Ace"; value = 11;}
+					else if(cnt2 == 10) {name = "Jack"; value = 10;}
+					else if(cnt2 == 11) {name = "Queen"; value = 10;}
+					else if(cnt2 == 12) {name = "King"; value = 10;}
+					else {System.out.println("Error: Cnt2 out of bounds"); System.exit(0);} //Error Handling
 				}
 				if(name.equals("Not Used")) {CardDeck[index] = new Card(cnt + 1, cnt2 + 1);}
-				else {
-					CardDeck[index] = new Card(cnt + 1, value, name);
-					name = "Not Used";
-				}
+				else {CardDeck[index] = new Card(cnt + 1, value, name); name = "Not Used";}
 				index++;
 			}
 		}
@@ -45,10 +31,7 @@ public class Deck {
 			int temp = 0;
 			for(int cnt2 = 0; cnt2 < 10000; cnt2++) {
 				temp = (int)(Math.random()*52);
-				if(temp != randIndex1) {
-					randIndex2 = temp;
-					break;
-				}
+				if(temp != randIndex1) {randIndex2 = temp; break;}
 			}
 			cardSwap(CardDeck, randIndex1, randIndex2);
 		}

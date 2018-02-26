@@ -13,14 +13,8 @@ public class Blackjack {
 			Hand dealerHand = new Hand();
 			Hand hand = new Hand();
 			while(true) {
-				if(isPlayerTurn) {
-					player.playerTurn(dealerHand, hand);
-					isPlayerTurn = false;
-				}else {
-					Dealer dealer = new Dealer(dealerHand);
-					dealer.turn();
-					break;
-				}
+				if(isPlayerTurn) {player.playerTurn(dealerHand, hand); isPlayerTurn = false;}
+				else {Dealer dealer = new Dealer(dealerHand); dealer.turn(); break;}
 			}
 			roundEnd(dealerHand, hand);
 			if(gameOver) {break;}
@@ -29,13 +23,13 @@ public class Blackjack {
 	}
 	
 	private static void roundEnd(Hand dealerHand, Hand hand) {
-		if(dealerHand.getRunningTotal() < hand.getRunningTotal() && hand.getRunningTotal() <= 21) {
+		if(dealerHand.getRunningTotal() < hand.getRunningTotal() && hand.getRunningTotal() <= 21) { //Too large a statement to compress
 			System.out.print("\nPlayer wins $" + hand.getBet() + " over the dealer's hand containing the ");
 			endRound(dealerHand);
 			System.out.print("\n");
 			player.moneyGain(hand);
 		}else if(dealerHand.getRunningTotal() == hand.getRunningTotal()) {System.out.println("Push!");}
-		else {
+		else { //Too large to compress
 			System.out.print("\nPlayer loses $" + hand.getBet() + " to the dealer's hand containing the ");
 			endRound(dealerHand);
 			System.out.print("\n");
@@ -47,17 +41,17 @@ public class Blackjack {
 	}
 	
 	private static void gameShuffle() {
-		if(9 < Math.random()*10 + 1 && 12 < shuffleThrottle) {
-			deck.shuffle(); 
-			System.out.println("\n\nDeck Shuffled\n\n");
-		}else shuffleThrottle++;
+		if(9 < Math.random()*10 + 1 && 12 < shuffleThrottle) {deck.shuffle(); System.out.println("\n\nDeck Shuffled\n\n");}
+		else shuffleThrottle++;
 	}
 	
 	private static void endRound(Hand hand) {
 		if(hand.findNextEmpty() != 2) {
 			for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
-				if(cnt < hand.findNextEmpty() - 1) {System.out.print(hand.toString(cnt) + ", ");} else {System.out.print("and " + hand.toString(cnt));}
+				if(cnt < hand.findNextEmpty() - 1) {System.out.print(hand.toString(cnt) + ", ");} 
+				else System.out.print("and " + hand.toString(cnt));
 			}
-		}else {System.out.print(hand.toString(0) +  " and the " + hand.toString(1));}
+		}
+		else System.out.print(hand.toString(0) +  " and the " + hand.toString(1));
 	}
 }
