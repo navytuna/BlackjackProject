@@ -1,0 +1,57 @@
+Commands:
+	Show Hand
+		Shows the cards currently in your hand
+
+	Hit
+		Draws a new card to your hand
+
+	Double Down
+		Hits, doubles the current bet, and stands the hand
+			Note: If your bet * 2 is more than your current cash you will be unable to complete this command
+
+	Stand
+		Ends the turn and lets the Computer play
+		
+	Exit
+		Exits the game
+		
+How to play Blackjack:
+	This guide assumes you understand card terminology i.e. suits, what is or isn't a face card, etc.
+	If you do not understand such terminology then this guide recommends *VERY STRONGLY* to look it up online or in a library
+	
+	Objective of the game:
+		The objective of the game is to get as close as you can to 21 without "busting", or going over the limit.
+	
+	How values are calculated:
+		Values are calculated where each face card is valued at 10.
+		Aces are not considered a face card and are valued at 11.
+			Note: The only case an Ace isn't valued at 11 but instead is valued at 1 is when an 11 would make the player or dealer bust
+		All other cards are valued at their shown number, i.e. A 10 of Spades is valued at 10.
+		
+	How to play:
+		Once hands for the dealer and the player(s) are dealt, play begins.
+		The first thing that occurs is the bet.
+		A player may only bet from the table's minimum to the maximum amount of chips they have.
+			Note: Some tables have table maximums. This is not the case with this program.
+		A player may then stand, hit, double down, or split.
+		
+		Stand:
+			Standing is when the player ends their turn, passing play over to the next player or dealer.
+			
+		Hit:
+			When a player hits they are drawing a card and adding it to their hand. This can cause the player to bust.
+			
+		Double Down:
+			This draws a singular card and doubles the player's bet. This will end a player's turn.
+				Note: This can only be performed at the beginning of a turn
+				
+		Split:
+			When a player holds two cards of the same value they can split their hand into two.
+			Currently this is not implemented and it shall not be explained further.
+			
+		When the player's turn ends, play passes to the dealer.
+		The dealer has specific sets of rules they must follow which shall not be detailed here.
+		The winner of the round is the one closest to 21 without going over.
+		If the player wins with a blackjack (a hand valued at 21), the player gets 1 and 1/2 times their bet.
+		
+		If this guide does not explain the game to you look online for guides that are more suited to your tastes.
