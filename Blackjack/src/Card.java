@@ -4,13 +4,11 @@ public class Card {
 	private int suit, number;
 	private String name; //For facecards only
 	
-	public Card() {name = "p"; suit = -1; number = 0;}
+	public Card() {name = "p"; suit = -1; number = 0;} //Empty constructor so a hand of cards can be created to later be instantiated
 	
 	public Card(int initSuit, int initNum) {suit = initSuit; number = initNum;}
 	
 	public Card(int initSuit, int initNum, String initName) {name = initName; suit = initSuit; number = initNum;}
-	
-	public Card(Card arg) {name = arg.getName(); suit = arg.getSuit(); number = arg.getNumber();}
 	
 	public String getName() {return name;}
 	

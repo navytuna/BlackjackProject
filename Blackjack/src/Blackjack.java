@@ -23,12 +23,14 @@ public class Blackjack {
 	}
 	
 	private static void roundEnd(Hand dealerHand, Hand hand) {
+		//Determines result of a round of play
 		if(dealerHand.getRunningTotal() < hand.getRunningTotal() && hand.getRunningTotal() <= 21) { //Too large a statement to compress
 			System.out.print("\nPlayer wins $" + hand.getBet() + " over the dealer's hand containing the ");
 			endRound(dealerHand);
 			System.out.print("\n");
 			player.moneyGain(hand);
-		}else if(dealerHand.getRunningTotal() == hand.getRunningTotal()) {System.out.println("Push!");}
+		}
+		else if(dealerHand.getRunningTotal() == hand.getRunningTotal()) {System.out.println("Push!");}
 		else { //Too large to compress
 			System.out.print("\nPlayer loses $" + hand.getBet() + " to the dealer's hand containing the ");
 			endRound(dealerHand);
@@ -41,11 +43,13 @@ public class Blackjack {
 	}
 	
 	private static void gameShuffle() {
-		if(9 < Math.random()*10 + 1 && 12 < shuffleThrottle) {deck.shuffle(); System.out.println("\n\nDeck Shuffled\n\n");}
+		//Shuffles after a few rounds and a random check
+		if(9 < Math.random()*10 + 1 && 3 < shuffleThrottle) {deck.shuffle(); System.out.println("\n\nDeck Shuffled\n\n");}
 		else shuffleThrottle++;
 	}
 	
 	private static void endRound(Hand hand) {
+		//Print statements adjusting for card count
 		if(hand.findNextEmpty() != 2) {
 			for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {
 				if(cnt < hand.findNextEmpty() - 1) {System.out.print(hand.toString(cnt) + ", ");} 

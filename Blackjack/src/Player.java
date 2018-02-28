@@ -24,6 +24,7 @@ public class Player extends Hand{
 	public int getCash() {return Cash;}
 	
 	private void menu(Hand hand) {
+		//Console-based UI to play the game
 		while(true) {
 			System.out.println("Input your command");
 			String in = sc.nextLine();
@@ -38,7 +39,8 @@ public class Player extends Hand{
 		}
 	}
 	
-	public void showHand(Hand hand, int length) {
+	public void showHand(Hand hand, int length) { 
+		//Functions as the Player's toString effectively
 		hand.setRunningTotal();
 		StringBuilder out = new StringBuilder("");
 		for(int cnt = 0; cnt < length; cnt++) {out.append(hand.toString(cnt)); if((cnt + 1) != length) {out.append(", ");};}
@@ -54,11 +56,12 @@ public class Player extends Hand{
 		//^Checks for a blackjack
 	}
 	
+	//The betting system takes the money for the bet and does with it as needed at the end. It makes it easier to code and smoother to run
 	public void moneyLose(Hand hand) {Cash -= hand.getBet();}
-	
 	public void moneyGain(Hand hand) {Cash += hand.getBet();}
 
 	private void hit(Hand hand) {
+		//Draws a card from the deck at the next position
 		hand.drawCard();
 		if(21 < hand.getRunningTotal() && hand.hand[hand.findNextEmpty() -1].getNumber() == 11) hand.hand[hand.findNextEmpty() -1].setNumber(1);
 		System.out.println("\nThe " + hand.toString(hand.findNextEmpty() - 1) + " was drawn bringing the hand to a total of " + hand.getRunningTotal());
@@ -71,6 +74,6 @@ public class Player extends Hand{
 	
 	public int findAce(Hand hand) {
 		for(int cnt = 0; cnt < hand.findNextEmpty(); cnt++) {if(hand.hand[cnt].getNumber() == 11) {return cnt;}}
-		return -1; //For compiling only. It should never be returned
+		return -1; //For compiling only. It should never be returned. It is set at -1 to force an index out of bounds error if it is returned ever
 	}
 }

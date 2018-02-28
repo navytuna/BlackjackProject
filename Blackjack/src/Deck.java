@@ -1,7 +1,7 @@
 
 public class Deck {
 	private Card[] CardDeck = new Card[52];
-	private int DeckIndex = 0;
+	private int DeckIndex = 0; //Keeps track of where players are in the deck
 	
 	public Deck() {
 		int index = 0;
@@ -21,11 +21,11 @@ public class Deck {
 				index++;
 			}
 		}
-		for(int cnt = 0; cnt < 8; cnt++) {shuffle();}
+		for(int cnt = 0; cnt < 8; cnt++) {shuffle();} //Shuffles to randomize the card order
 	}
 	
 	public void shuffle() {
-		for(int cnt = 0; cnt < (int)(Math.random()*100+22); cnt++) {
+		for(int cnt = 0; cnt < (int)(Math.random()*100+22); cnt++) { //Repeats shuffling for a random amount of time, minimum 22 swaps
 			int randIndex1 = (int)(Math.random()*52);
 			int randIndex2 = 0;
 			int temp = 0;
@@ -35,14 +35,10 @@ public class Deck {
 			}
 			cardSwap(CardDeck, randIndex1, randIndex2);
 		}
-		DeckIndex = 0;
+		DeckIndex = 0; //Resets the count where the deck is
 	}
 	
-	public void cardSwap(Card[] Card, int index1, int index2) {
-		Card temp = Card[index1];
-		Card[index1] = Card[index2];
-		Card[index2] = temp;
-	}
+	public void cardSwap(Card[] Card, int index1, int index2) {Card temp = Card[index1]; Card[index1] = Card[index2]; Card[index2] = temp;}
 	
 	public Card getCard() { //Functions so that the next card off of the stack is drawn rather than the same card
 		int card = 0;
